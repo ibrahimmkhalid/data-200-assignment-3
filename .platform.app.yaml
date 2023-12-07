@@ -9,5 +9,6 @@ hooks:
       pip install -r requirements.txt
 
 web:
-  commands: 
-    start: "python ./topicreport/manage.py runserver"
+  locations:
+    "/":
+      passthru: "/app/topicreport/wsgi.py"
