@@ -11,7 +11,7 @@ hooks:
 
 web:
     commands:
-        start: "gunicorn topicreport.wsgi:application"
+        start: "python manage.py runserver"
 
 mounts:
   '/static':
