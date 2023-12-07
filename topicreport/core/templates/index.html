@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <link rel="shortcut icon" type="image/ico" href="{% static 'images/favicon.ico' %}" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/htmx.org@1.9.6"
+    integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="{% static 'core/styles.css' %}" />
+  <title>Ibrahim Assignment 3</title>
+</head>
+
+<body>
+  <div class="flex h-screen w-screen flex-col bg-white">
+    <nav class="flex items-center justify-center border-b border-gray-300 p-8">
+      <img class="h-12" src="{% static 'images/favicon.ico' %}" alt="logo" />
+      <h1 class="text-xl font-semibold">Trends in Video Game from 1980 to 2023</h1>
+    </nav>
+    <div class="container mx-auto flex items-center justify-center p-4">
+      <div class="w-full justify-center">
+        <div class="my-4 flex items-center justify-center rounded-lg">
+          <div class="flex w-full items-center rounded-lg bg-gray-100 p-8 text-gray-800">
+            <div>
+              <div class="text">
+                In this report we will take a look at the trends in video game releases from 1980 to 2020. We will look
+                at the number of games released per year, the trends within the year, and the top genres of games
+                released. We will also take a look at the reviews of the top 100 games. We will see what the reviews are
+                saying and what the most common words used in the reviews are. This page also allows you to select the
+                number of games to display in the word cloud. Some data cleaning was done to remove games not released
+                yet, and to remove reviews that were not in English.
+                <br />
+                <br />
+                Data source:
+                <a class="text-blue-600 visited:text-purple-600"
+                  href="https://www.kaggle.com/datasets/arnabchaki/popular-video-games-1980-2023">
+                  kaggle.com/datasets/arnabchaki/popular-video-games-1980-2023</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- add page break after each graph for pdf -->
+        <p style="page-break-after: always;"></p>
+        {% for graph in graphs %}
+        <!-- iterate over all graphs as defined in views.py -->
+        <div class="my-4 flex flex-col items-center justify-center rounded-lg xl:flex-row">
+          <div
+            class="my-4 flex h-48 w-full items-center rounded-lg bg-gray-100 p-8 text-gray-800 xl:mr-8 xl:h-96 xl:w-4/12">
+            <div>
+              <!-- render the graph title and text -->
+              <div class="text-2xl">{{ graph.title }}</div>
+              <div class="text">{{ graph.text }}</div>
+            </div>
+          </div>
+          <!-- using htmx to load the graph data from the server -->
+          <div
+            class="flex h-96 w-full items-center justify-center rounded-lg bg-gray-100 p-4 text-2xl text-gray-800 xl:w-8/12"
+            hx-get="/api?graph={{ graph.id }}" hx-trigger="load" hx-swap="innerHTML swap:1s">Loading...</div>
+        </div>
+        <p style="page-break-after: always;"></p>
+        {% endfor %}
+        <div class="my-4 flex flex-col items-center justify-center rounded-lg xl:flex-row">
+          <div
+            class="my-4 flex h-48 w-full items-center rounded-lg bg-gray-100 p-8 text-gray-800 xl:mr-8 xl:h-96 xl:w-4/12">
+            <div>
+              <!-- render the wordcloud title and text -->
+              <div class="text-2xl">{{ wordcloud.title }}</div>
+              <div class="text">{{ wordcloud.text }}</div>
+
+              <!-- using htmx to load the wordcloud data from the server -->
+              <!-- define a select box to select the number of games to display in the wordcloud -->
+              <select id="wordcloud-select" name="game_count" hx-get="/wordcloud" hx-target="#wordcloud-image"
+                hx-swap="innerHTML" hx-trigger="change,load" hx-indicator=".my-hx-indicator-identifier-1"
+                class="block w-full rounded-lg border border-gray-300 p-2.5">
+                {% for value in wordcloud.values %}
+                <option value="{{ value }}">Top {{ value }} games</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <!-- using htmx to load the wordcloud data from the server -->
+          <div
+            class="flex h-96 w-full items-center justify-center rounded-lg bg-gray-100 p-4 text-2xl text-gray-800 xl:w-8/12">
+            <div class="my-hx-indicator-identifier-1 htmx-indicator" style="width: 700px; height: 450px">Loading...
+            </div>
+            <div id="wordcloud-image" class="my-hx-indicator-identifier-1 htmx-loaded-content htmx-indicator"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

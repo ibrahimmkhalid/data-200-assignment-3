@@ -1,0 +1,15 @@
+.htmx-indicator {
+    display: none;
+}
+
+.htmx-request.htmx-indicator {
+    display: contents;
+}
+
+.htmx-loaded-content {
+    display: contents;
+}
+
+.htmx-request.htmx-loaded-content {
+    display: none;
+}

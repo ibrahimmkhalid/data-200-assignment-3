@@ -1,0 +1,6 @@
+django
+pandas
+plotly
+wordcloud
+langdetect
+scikit-learn
