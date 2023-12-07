@@ -11,7 +11,14 @@ hooks:
 
 web:
     commands:
-        start: "python manage.py runserver"
+        start: "gunicorn -w 4 -b localhost:8000 topicreport.wsgi:application"
+    locations:
+        "/":
+            passthru: true
+        "/static":
+            root: "static"
+            expries: 1h
+            allow: true
 
 mounts:
   '/static':
