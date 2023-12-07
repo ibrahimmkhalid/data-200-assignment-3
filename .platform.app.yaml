@@ -9,9 +9,8 @@ hooks:
       pip install -r requirements.txt
 
 web:
-  chdir: ./topicreport
   commands:
-    start: "gunicorn topicreport.wsgi:application"
+    start: "cd topicreport && gunicorn topicreport.wsgi:application"
 
 mounts:
   '/static':
