@@ -9,6 +9,7 @@ hooks:
       pip install -r requirements.txt
 
 web:
+  chdir: ./topicreport
   commands:
     start: "gunicorn topicreport.wsgi:application"
 
@@ -16,6 +17,3 @@ mounts:
   '/static':
     source: local
     source_path: 'topicreport/core/static'
-  '/core/data':
-    source: local
-    source_path: 'topicreport/core/data
