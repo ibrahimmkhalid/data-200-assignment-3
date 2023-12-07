@@ -4,17 +4,16 @@ type: 'python:3.11'
 
 disk: 2048
 
-hooks:
-    build: |
-      pip install -r requirements.txt
-
 web:
-    commands:
-        start: "gunicorn -w 4 -b localhost:8000 topicreport.wsgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "gunicorn topicreport.wsgi:application"
+
+mounts:
+  '/static':
+    source: local
+    source_path: 'topicreport/core/static'
+
+dependencies:
+  python:
+    requirements:
+      file: requirements.txt
