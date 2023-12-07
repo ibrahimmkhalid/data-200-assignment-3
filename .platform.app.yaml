@@ -16,3 +16,6 @@ mounts:
   '/static':
     source: local
     source_path: 'topicreport/core/static'
+  '/core/data':
+    source: local
+    source_path: 'topicreport/core/data
