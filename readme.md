@@ -7,6 +7,8 @@ now has 5 graphs, one of which is interactive.
 
 Dataset source: https://www.kaggle.com/datasets/arnabchaki/popular-video-games-1980-2023
 
+![page preview](./zoomed-out-layout.png)
+
 Technologies/Libraries used:
 - Django: Used for hosting actual webpage
 - Jupyter Notebook: Used to explore dataset in a sandbox
