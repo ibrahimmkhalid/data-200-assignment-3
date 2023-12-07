@@ -16,4 +16,4 @@ web:
 mounts:
   '/static':
     source: local
-    source_path: '/core/static'
+    source_path: 'core/static'
