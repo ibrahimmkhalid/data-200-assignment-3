@@ -2,10 +2,15 @@ import pandas as pd
 import plotly.graph_objects as go
 import ast
 from wordcloud import WordCloud, STOPWORDS
+import os
+from django.conf import settings
 
 def get_data(graph):
+    # get the path of the data file
+    data_file_path = os.path.join(settings.BASE_DIR, 'core/data/scrubbed.csv')
+
     # reading data
-    df = pd.read_csv('./core/data/scrubbed.csv')
+    df = pd.read_csv(data_file_path)
     fig = None
 
     if graph == 0:
@@ -145,8 +150,11 @@ def get_data(graph):
 
 def get_wordcloud(n):
 
+    # get the path of the data file
+    data_file_path = os.path.join(settings.BASE_DIR, 'core/data/scrubbed.csv')
+
     # reading data
-    df = pd.read_csv('./core/data/scrubbed.csv')
+    df = pd.read_csv(data_file_path)
 
     # sort by score and pick top n games
     df = df.sort_values(by="score", ascending=False)[:n]
