@@ -17,7 +17,7 @@ web:
             passthru: true
         "/static":
             root: "static"
-            expries: 1h
+            expires: 1h
             allow: true
 
 mounts:
