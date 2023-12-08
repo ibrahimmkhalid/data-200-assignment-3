@@ -58,8 +58,10 @@
           </div>
           <!-- using htmx to load the graph data from the server -->
           <div
-            class="flex h-96 w-full items-center justify-center rounded-lg bg-gray-100 p-4 text-2xl text-gray-800 xl:w-8/12"
-            hx-get="/api?graph={{ graph.id }}" hx-trigger="load" hx-swap="innerHTML swap:1s">Loading...</div>
+            class="flex h-96 w-full items-center justify-center rounded-lg bg-gray-100 p-4 xl:w-8/12"
+            hx-get="/api?graph={{ graph.id }}" hx-trigger="load delay:5s" hx-swap="outerHTML swap:1s" hx-target="#graph-id-{{ graph.id }}">
+            <div id="graph-id-{{ graph.id }}" class="text-2xl text-gray-800">Loading...</div>
+          </div>
         </div>
         <p style="page-break-after: always;"></p>
         {% endfor %}
@@ -84,8 +86,8 @@
           </div>
           <!-- using htmx to load the wordcloud data from the server -->
           <div
-            class="flex h-96 w-full items-center justify-center rounded-lg bg-gray-100 p-4 text-2xl text-gray-800 xl:w-8/12">
-            <div class="my-hx-indicator-identifier-1 htmx-indicator" style="width: 700px; height: 450px">Loading...
+            class="flex h-96 w-full items-center justify-center rounded-lg bg-gray-100 p-4 xl:w-8/12">
+            <div class="my-hx-indicator-identifier-1 htmx-indicator text-2xl text-gray-800 " style="width: 700px; height: 450px">Loading...
             </div>
             <div id="wordcloud-image" class="my-hx-indicator-identifier-1 htmx-loaded-content htmx-indicator"></div>
           </div>

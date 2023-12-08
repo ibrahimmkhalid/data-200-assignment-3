@@ -72,12 +72,17 @@ def basic_graph(request):
     graph = int(params.get('graph'))
 
     # get figure from backend and convert to html
-    fig = backend.get_data(graph).to_html(include_plotlyjs='cdn',
-                                          full_html=False,
-                                          config={
-                                              'displayModeBar': False
-                                              }
-                                          )
+    try:
+        fig = backend.get_data(graph).to_html(include_plotlyjs='cdn',
+                                              full_html=False,
+                                              config={
+                                                  'displayModeBar': False
+                                                  }
+                                              )
+    except Exception as e:
+        fig = f"""<div id="graph-id-{graph}"
+            class="flex h-96 w-full items-center justify-center rounded-lg bg-gray-100 p-4 text-1xl text-gray-800 xl:w-8/12"
+            hx-get="/api?graph={graph}" hx-trigger="every 3s" hx-swap="outerHTML swap:1s">There was an error, retrying ...</div>"""
     return HttpResponse(fig)
 
 def wordcloud(request):
@@ -87,12 +92,20 @@ def wordcloud(request):
     game_count = int(params.get('game_count'))
 
     # get figure from backend and convert to html
-    fig = backend.get_wordcloud(game_count).to_html(include_plotlyjs='cdn', 
-                                                    full_html=False,
-                                                    config={
-                                                        'displayModeBar': False, 
-                                                        'staticPlot': True
-                                                        },
-                                                    )
+    try:
+        fig = backend.get_wordcloud(game_count).to_html(include_plotlyjs='cdn', 
+                                                        full_html=False,
+                                                        config={
+                                                            'displayModeBar': False, 
+                                                            'staticPlot': True
+                                                            },
+                                                        )
+    except Exception as e:
+        fig = f"""
+            <div id="wordcloud-image" class="my-hx-indicator-identifier-1 htmx-loaded-content htmx-indicator text-1xl text-gray-800"
+                hx-trigger="every 3s" hx-swap="outerHTML" hx-get="/wordcloud?game_count={game_count}">
+                There was an error, retrying...
+            </div>
+        """
     
     return HttpResponse(fig)
