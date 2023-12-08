@@ -1,0 +1,26 @@
+name: app
+
+type: 'python:3.11'
+
+disk: 2048
+
+hooks:
+  build: |
+    pip install -r requirements.txt
+    python manage.py collectstatic --noinput
+  deploy: python manage.py migrate
+
+web:
+  commands:
+    start: "gunicorn -w 4 -b unix:$SOCKET topicreport.wsgi:application"
+
+  upstream:
+    socket_family: unix
+
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
