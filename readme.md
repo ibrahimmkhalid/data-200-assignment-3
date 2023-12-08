@@ -29,7 +29,7 @@ url is designed specifically for the wordcloud generation as that was designed t
 TailWindCSS was the primary method for page styling as it allows extensive expression without requiring 
 heavy styling libraries or external files. All styles can be displayed inline with the actual HTML element. 
 TailWindCSS also allowed the page to have responsive design to work on a wide variety of screen resolutions. 
-Some extra styles were defined in './topicreport/core/static/core/styles.css' to better handle HTMX 
+Some extra styles were defined in './core/static/core/styles.css' to better handle HTMX 
 indicators. This was needed to create a better user experience while the user waits for the server to 
 respond with the updated wordcloud.
 
@@ -47,7 +47,7 @@ Notable files:
 - ./scrath.ipynb: exploring dataset in a sandbox
 - ./print-layout.pdf: How application looks like when printed
 - ./zoomed-out-layout.png: How full application looks like when viewed in webpage
-- ./topicreport/core/data/scrubbed.csv: cleaned datasource
-- ./topicreport/core/templates/index.html: webpage template layout
-- ./topicreport/core/backend.py: where all graphs objects are defined for the webpage
-- ./topicreport/core/views.py: where the graph's auxilliary data is defined
+- ./core/data/scrubbed.csv: cleaned datasource
+- ./core/templates/index.html: webpage template layout
+- ./core/backend.py: where all graphs objects are defined for the webpage
+- ./core/views.py: where the graph's auxilliary data is defined

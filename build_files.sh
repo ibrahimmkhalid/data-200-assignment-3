@@ -1,6 +1,4 @@
-mkdir static -p
-mkdir staticfiles_build -p
-mkdir staticfiles_build/static -p
+python -m pip install --upgrade pip
 pip install -r ./requirements.txt
 python3.9 manage.py collectstatic --noinput
 

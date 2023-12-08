@@ -43,4 +43,4 @@ for i in range(len(df["Reviews"])):
             df["Reviews"].iloc[i].remove(y)
 
 # save to Django app data folder
-df.to_csv("./topicreport/core/data/scrubbed.csv", index=False)
+df.to_csv("../core/data/scrubbed.csv", index=False)
