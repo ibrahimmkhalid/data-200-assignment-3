@@ -11,4 +11,13 @@ hooks:
 
 web:
     commands:
-        start: "gunicorn -w 4 -b localhost:8000 topicreport.wsgi:application"
+        start: "gunicorn -w 4 -b unix:$SOCKET topicreport.wsgi:application"
+    upstream:
+        socket_family: unix
+    locations:
+        "/":
+            passthru: true
+        "/static":
+            root: "static"
+            expires: 1h
+            allow: true
