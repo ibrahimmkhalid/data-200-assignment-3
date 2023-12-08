@@ -11,9 +11,7 @@ hooks:
 
 web:
     commands:
-        start: "gunicorn -w 4 -b unix:$SOCKET topicreport.wsgi:application"
-    upstream:
-        socket_family: unix
+        start: "gunicorn topicreport.wsgi:application"
     locations:
         "/":
             passthru: true
