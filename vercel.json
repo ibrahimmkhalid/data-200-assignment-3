@@ -4,7 +4,7 @@
     {
       "src": "topicreport/topicreport/wsgi.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.11" }
     },
     {
       "src": "topicreport/build_files.sh",
@@ -21,7 +21,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "topicreport/topicreport/wsgi.py"
+      "dest": "topicreport/wsgi.py"
     }
   ]
 }
