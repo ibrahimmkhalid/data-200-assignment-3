@@ -10,7 +10,7 @@
       "src": "topicreport/build_files.sh",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "topicreport/staticfiles_build"
+        "distDir": "staticfiles_build"
       }
     }
   ],
