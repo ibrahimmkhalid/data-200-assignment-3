@@ -1,5 +1,5 @@
 import pandas as pd
-# import plotly.graph_objects as go
+import plotly.graph_objects as go
 import ast
 from wordcloud import WordCloud, STOPWORDS
 import os
