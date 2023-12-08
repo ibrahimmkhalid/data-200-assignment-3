@@ -1,7 +1,7 @@
-import pandas as pd
-import plotly.graph_objects as go
-import ast
-from wordcloud import WordCloud, STOPWORDS
+# import pandas as pd
+# import plotly.graph_objects as go
+# import ast
+# from wordcloud import WordCloud, STOPWORDS
 import os
 from django.conf import settings
 
@@ -26,8 +26,8 @@ def get_data(graph):
             name="Original Data"))
         
         # only import these if we need them
-        from sklearn.linear_model import LinearRegression
-        from sklearn.preprocessing import PolynomialFeatures
+        # from sklearn.linear_model import LinearRegression
+        # from sklearn.preprocessing import PolynomialFeatures
 
         # perform polynomial regression
         lr = LinearRegression()
