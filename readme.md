@@ -1,4 +1,4 @@
-## DATA - 200 | Assignment 3
+## DATA - 200 | Assignment 3 | Video Game Trends
 #### Ibrahim Mansoor Khalid
 
 The goal of this assignment was to create 5 unique charts and display them on a page using django. 
