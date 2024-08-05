@@ -1,5 +1,5 @@
 """
-WSGI config for topicreport project.
+WSGI config for api project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,7 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'topicreport.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api.settings')
 
 if os.environ.get('ENV') == 'production':
     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
