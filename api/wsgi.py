@@ -11,9 +11,9 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "api.settings")
 
-if os.environ.get('ENV') == 'production':
+if os.environ.get("ENV") == "production":
     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 app = get_wsgi_application()

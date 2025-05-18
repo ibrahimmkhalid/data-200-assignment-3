@@ -9,8 +9,17 @@ df = pd.read_csv("games.csv")
 df.drop(columns=["Unnamed: 0"], inplace=True)
 
 # convert columns to int
-parse_thousand_to_int = lambda x: int(1000*float(x.split("K")[0])) if "K" in x else int(x)
-convert_columns = ["Times Listed", "Number of Reviews", "Plays", "Playing", "Backlogs", "Wishlist"]
+parse_thousand_to_int = (
+    lambda x: int(1000 * float(x.split("K")[0])) if "K" in x else int(x)
+)
+convert_columns = [
+    "Times Listed",
+    "Number of Reviews",
+    "Plays",
+    "Playing",
+    "Backlogs",
+    "Wishlist",
+]
 for col in convert_columns:
     df[col] = df[col].apply(parse_thousand_to_int)
 
@@ -24,7 +33,7 @@ df.dropna(inplace=True)
 df.drop_duplicates(subset="Title", keep="first", inplace=True)
 
 # convert columns to datetime and extract year and month
-df['Release Date'] = pd.to_datetime(df['Release Date'])
+df["Release Date"] = pd.to_datetime(df["Release Date"])
 df["year"] = df["Release Date"].dt.year
 df["month"] = df["Release Date"].dt.month
 
