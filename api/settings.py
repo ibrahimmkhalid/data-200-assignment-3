@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     ".vercel.app",
     ".platformsh.site",
     ".compute-1.amazonaws.com",
+    "django-video-games-report-s13lc.kinsta.app",
 ]
 
 
