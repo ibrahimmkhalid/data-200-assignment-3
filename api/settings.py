@@ -131,6 +131,7 @@ STATIC_URL = "/static/"
 print(BASE_DIR)  # Debug
 STATICFILES_DIRS = [
     BASE_DIR / "core/static",
+    BASE_DIR / "static",
     # Add other directories if needed
 ]
 
