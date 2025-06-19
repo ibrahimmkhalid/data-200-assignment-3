@@ -97,6 +97,7 @@
               <select id="wordcloud-select" name="game_count" hx-get="/wordcloud" hx-target="#wordcloud-image"
                 hx-swap="innerHTML" hx-trigger="change,load" hx-indicator=".my-hx-indicator-identifier-1"
                 class="block w-full rounded-lg border border-gray-300 p-2.5">
+                <option value="select">Select a count</option>
                 {% for value in wordcloud.values %}
                 <option value="{{ value }}">Top {{ value }} games</option>
                 {% endfor %}

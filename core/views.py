@@ -51,10 +51,10 @@ def index(request):
     # defined separately from graphs because it is a special interactive element
     wordcloud = {
         "title": "Reviews for top games",
-        "text": """This wordcloud shows the most common words used in the reviews of 
-                the top 100 games. The reviews for the top 100 games mostly refer to 'Story' and 'time'.
-                By increasing the number of games, we can see more words such as 'fun', get emphasized,
-                while 'story' gets deemphasized. Take a look by using the selector below.""",
+        "text": """This section shows the wordcloud of the most common words used in the reviews of 
+                the top N games. Selecting the top 100 games shows that they mostly refer to 'Story' and 'time'.
+                By selecting a larger number of games, we can see more words such as 'fun', get emphasized,
+                while 'story' gets deemphasized.""",
         "values": [100, 300, 500, 1000],
     }
 
@@ -85,10 +85,22 @@ def wordcloud(request):
     params = request.GET.dict()
 
     # get number of games from params
-    game_count = int(params.get("game_count"))
+    game_count = params.get("game_count")
 
     # get figure from backend and convert to html
     try:
+        try:
+            game_count = int(game_count)
+        except Exception as e:
+            if game_count == "select":
+                return HttpResponse("""
+            <div class="my-hx-indicator-identifier-1 htmx-loaded-content htmx-indicator text-2xl text-gray-800 " style="width: 700px; height: 450px">
+              Select an option...
+            </div>
+            """)
+
+            else:
+                raise
         fig = backend.get_wordcloud(game_count).to_html(
             include_plotlyjs="cdn",
             full_html=False,
